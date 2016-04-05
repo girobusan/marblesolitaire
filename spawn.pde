@@ -1,0 +1,5 @@
+class sPawn{
+//common class
+
+
+}
