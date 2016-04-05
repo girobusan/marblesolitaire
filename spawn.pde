@@ -1,5 +1,12 @@
 class sPawn{
-//common class
+
+  sPawn(){
+  
+  }
+  
+  public void draw(){
+  
+  }
 
 
 }

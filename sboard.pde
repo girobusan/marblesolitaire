@@ -3,7 +3,7 @@ class sBoard{
  int size; //pixels 
  int x;
  int y;
- float inset=0.2; 
+ float inset=40; 
  PImage background;
  
  sTile[][] tiles = new sTile[7][7];
@@ -19,19 +19,19 @@ class sBoard{
    
  };
 
- sBoard(int ux, int uy, int us){
+ sBoard(int ux, int uy){
    x=ux;
    y=uy;
-   size=us;
+   //size=us;
    //populate tiles
    for (int iy=0; iy<cellSize;iy++){
      for (int ix=0; ix<cellSize; ix++){
         if (tpl[ix][iy]==1) 
          {
-         tiles[ix][iy] = new sTile();
+         tiles[ix][iy] = new sTile((ix+1)*tileSize, (iy+1)*tileSize, tileSize, ix, iy, this);
          }else
          {
-         tiles[ix][iy] = new noTile();
+         tiles[ix][iy] = new noTile((ix+1)*tileSize, (iy+1)*tileSize, tileSize, ix , iy, this);
          }
       }
     }//populated
@@ -45,11 +45,32 @@ class sBoard{
 
    
  public void draw(){
-   background(33);
-   //translate coords to board's zero point
-   //draw background
-   //loop: translate coords to each tile's zero
-   //call sTile.draw()
+   pushStyle();
+   pushMatrix();
+   translate(x,y); 
+   //
+   noFill();
+   stroke(80);
+   rect(0,0,9*tileSize,9*tileSize);
+   for (int y=0; y<cellSize; y++){
+     for (int x=0; x<cellSize; x++){
+       tiles[x][y].draw();
+     }
+   
+   }
+   //
+   popMatrix();
+   popStyle();
+}
+ 
+ public void mouseMoved(){
+   //println("moved");
+     for (int y=0; y<cellSize; y++){
+       for (int x=0; x<cellSize; x++){      
+        tiles[x][y].MoveMouse(mouseX-this.x, mouseY-this.y  );       
+       }   
+     }
+ 
  }
  
 }
