@@ -1,6 +1,8 @@
 class sTile{
   sBoard board;
   //positions in the grid
+  private sPawn pawn;
+  private boolean Empty=true;
   int posX; 
   int posY;
   //coordinates
@@ -35,13 +37,17 @@ class sTile{
     ellipse( size/2, size/2 , size/4, size/4);
     textAlign(CENTER);
     if (!Over){
-      fill(255);
+      fill(70);
     }else{
       fill(#E8F01D);
     }
     textSize(10);
     text(posX+":"+posY, size/2, size-5);
     fill(255);
+    
+    if (!Empty){
+    pawn.draw();
+    }
     //
     popStyle();
     popMatrix();
@@ -54,6 +60,25 @@ class sTile{
     return false;
     }
   }
+  
+  public void setPawn(sPawn pawn){
+  this.pawn=pawn;
+  Empty=false;  
+  }
+  
+  public sPawn getPawn(){
+   if (!Empty){
+    return this.pawn;
+   }else{
+   return null;
+   } 
+  }
+  
+  public void Clear(){
+  Empty=true;
+  }
+  
+ 
 
   public void MoveMouse(int ix, int iy){  
       if (isInside(ix, iy)){
