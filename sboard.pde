@@ -47,7 +47,7 @@ class sBoard{
  public void draw(){
    pushStyle();
    pushMatrix();
-   translate(x,y); 
+   translate(this.x,this.y); 
    //
    noFill();
    stroke(80);
