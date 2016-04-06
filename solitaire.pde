@@ -35,3 +35,9 @@ void mouseMoved(){
 
 theBoard.mouseMoved();
 }
+///service
+
+int Sgn( int n){  //can not use java.Math
+  if (n==0){return 0;}
+  return n>0 ? 1 : -1;
+}

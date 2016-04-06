@@ -1,14 +1,19 @@
 class sTile{
   sBoard board;
-  //positions in the grid
+
   protected sPawn pawn;
-  protected boolean Empty=true;
+  protected boolean Empty=true;     //is there a marble?
+  protected boolean Available=true; //can other marble move here?
+  boolean Selected = false; //is the marble here selected by user?
+  boolean Activated = false; //is this tile a possible move target for selected marble?
+  //positions in the grid
   int posX; 
   int posY;
-  //coordinates
+  //'physical' coordinates relative to parent (board)
   int x;
   int y;
   int size;
+  
   boolean Over = false;
 
   sTile(){
@@ -63,7 +68,11 @@ class sTile{
   
   public void setPawn(sPawn pawn){
   this.pawn=pawn;
-  Empty=false;  
+  pawn.posX = this.posX;
+  pawn.posY = this.posY;
+  pawn.board = this.board;
+  Empty=false; 
+  Available=false;
   }
   
   public sPawn getPawn(){
@@ -76,6 +85,15 @@ class sTile{
   
   public void Clear(){
   Empty=true;
+  Available=true;
+  }
+  
+  public boolean isEmpty(){
+  return Empty;
+  }
+  
+  public boolean isAvailable(){
+  return Available;
   }
   
  
@@ -97,22 +115,39 @@ class sTile{
 
 
 class noTile extends sTile{
+  
+  protected boolean Empty=true;
+  protected boolean Available=false;
 
   noTile(int x, int y, int size, int px , int py , sBoard brd){
-    this.x=x;
-    this.y =y;
-    this.size = size;
+    super(x,y,size,px,py,brd);
   }
   
    noTile(){
    super();
    }
+   
+   public void setPawn(sPawn pawn){
+    //do nothing;
+    }
+    
+  public void Clear(){
+  //do nothing
+  }
   
   public void draw(){
   //do nothing 
   }
   public boolean isInside(int tx,int ty){
    return false;
+  }
+  
+    public boolean isEmpty(){
+  return true;
+  }
+  
+  public boolean isAvailable(){
+  return false;
   }
   
   public void MoveMouse(int ix, int iy){
