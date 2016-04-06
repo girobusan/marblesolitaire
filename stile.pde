@@ -1,8 +1,8 @@
 class sTile{
   sBoard board;
   //positions in the grid
-  private sPawn pawn;
-  private boolean Empty=true;
+  protected sPawn pawn;
+  protected boolean Empty=true;
   int posX; 
   int posY;
   //coordinates
@@ -83,9 +83,12 @@ class sTile{
   public void MoveMouse(int ix, int iy){  
       if (isInside(ix, iy)){
       Over=true;
+      
+      if (!Empty){pawn.Over=true;}
       //println("over " + this.x + ":" + this.y + " (" + ix + ":" + iy + ")");
       }else{
       Over=false;
+      if (!Empty){pawn.Over=false;}
       }
     }
 }

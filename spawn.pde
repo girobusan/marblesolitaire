@@ -1,4 +1,6 @@
 class sPawn{
+  
+  boolean Over=false;
 
   sPawn(){
   
@@ -7,7 +9,11 @@ class sPawn{
   public void draw(){
     pushStyle();
     ellipseMode(CENTER);
+    if (Over){
+    stroke(#FFFFFF);
+    }else{
     noStroke();
+    }
     fill(#4873DE);
     ellipse(tileSize/2, tileSize/2, tileSize/1.8, tileSize/1.8);
     fill(#FFFFFF);
