@@ -57,44 +57,29 @@ class sPawn{
     sTile[] preres = new sTile[4];
     int counter=0;
     //check right
-    if (posX+2<7)
-    {      
-    if (!board.tiles[posX+1][posY].isAvailable()){
-        if (board.tiles[posX+2][posY].isAvailable()){
-           preres[counter] = board.tiles[posX+2][posY];
-           counter++;
-        }
-      }
+    if (checkMove(1,0))
+    { 
+      preres[counter] = board.tiles[posX+2][posY];
+      counter++;     
     }
      //check left
-     if (posX-2>=0)
+     if (checkMove(-1,0))
      {
-      if (!board.tiles[posX-1][posY].isAvailable()){
-        if (board.tiles[posX-2][posY].isAvailable()){
-           preres[counter] = board.tiles[posX-2][posY];
-           counter++;
-        }
-       }
+       preres[counter] = board.tiles[posX-2][posY];
+       counter++;
+     
      }
      //check top
-     if (posY-2>=0)
+     if (checkMove(0,-1))
      {
-       if (!board.tiles[posX][posY-1].isAvailable()){
-        if (board.tiles[posX][posY-2].isAvailable()){
-           preres[counter] = board.tiles[posX][posY-2];
-           counter++;
-        }
-       }
+       preres[counter] = board.tiles[posX][posY-2];
+       counter++;   
      }
      //check bottom
-     if (posY+2<7)
+     if (checkMove(0,1))
      {
-       if (!board.tiles[posX][posY+1].isAvailable()){
-        if (board.tiles[posX][posY+2].isAvailable()){
-           preres[counter] = board.tiles[posX][posY+2];
-           counter++;
-        }
-       }
+       preres[counter] = board.tiles[posX][posY+2];
+       counter++;
      }
      //end checks
      sTile[] finres = new sTile[counter];

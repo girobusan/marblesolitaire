@@ -14,7 +14,7 @@ theBoard.tiles[5][4].setPawn(new sPawn());
 theBoard.tiles[6][4].setPawn(new sPawn());
 theBoard.tiles[5][3].setPawn(new sPawn());
 theBoard.tiles[6][3].setPawn(new sPawn());
-println("Marbles: " + theBoard.countMarbles() );
+//println("Marbles: " + theBoard.countMarbles() );
 
 
 
@@ -26,15 +26,16 @@ background(50);
 theBoard.draw();
 }
 
-void mousePressed(){
-//if click inside board
-//translate coords to local
-//pass to board
-}
+
 
 void mouseMoved(){
 
 theBoard.mouseMoved();
+}
+
+
+void mousePressed(){
+theBoard.mousePressed();
 }
 ///service
 

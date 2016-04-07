@@ -38,7 +38,11 @@ class sTile{
     //
     ellipseMode(CENTER);
     noStroke();
-    fill(80);
+    if (Activated){
+       fill(200);
+    }else{
+       fill(80);
+    }
     ellipse( size/2, size/2 , size/4, size/4);
     textAlign(CENTER);
     if (!Over){
@@ -49,6 +53,11 @@ class sTile{
     textSize(10);
     text(posX+":"+posY, size/2, size-5);
     fill(255);
+    if (Selected){
+     stroke(255);
+     noFill();
+    ellipse( size/2, size/2 , 0.8*size, 0.8*size);
+    }
     
     if (!Empty){
     pawn.draw();
@@ -109,6 +118,21 @@ class sTile{
       if (!Empty){pawn.Over=false;}
       }
     }
+  public void PressMouse(int ix, int iy){
+  if (isInside(ix, iy)){
+    if (!Empty){
+       Selected=true;
+       board.Activate( pawn.possibleMoves() );
+       //int[] r = new int[]{this.x , this.y};
+       board.SelectedTile = this;
+       //board.SelectedTile = new int[]{this.x , this.y};//; //new int[] {this.x, this.y};
+    }
+    if(Activated){
+    //board.doMove(this.x, this.y); //
+    }  
+   }  
+  }//Press 
+   
 }
 
 
@@ -123,13 +147,13 @@ class noTile extends sTile{
     super(x,y,size,px,py,brd);
   }
   
-   noTile(){
-   super();
-   }
+  noTile(){
+  super();
+  }
    
-   public void setPawn(sPawn pawn){
+  public void setPawn(sPawn pawn){
     //do nothing;
-    }
+  }
     
   public void Clear(){
   //do nothing
@@ -142,15 +166,19 @@ class noTile extends sTile{
    return false;
   }
   
-    public boolean isEmpty(){
-  return true;
+  public boolean isEmpty(){
+    return true;
   }
   
   public boolean isAvailable(){
-  return false;
+    return false;
   }
   
   public void MoveMouse(int ix, int iy){
+  //do nothing
+  }
+  
+  public void PressMouse(int ix, int iy){
   //do nothing
   }
 
