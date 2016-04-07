@@ -58,9 +58,25 @@ class sBoard{
      }
    
    }
+   fill(255);
+   textSize(12);
+   text("Marbles: " + countMarbles() , tileSize/3, tileSize/3);
    //
    popMatrix();
    popStyle();
+}
+
+public int countMarbles(){
+  int rs=0;
+   for (int y=0; y<cellSize; y++){
+     for (int x=0; x<cellSize; x++){
+       if(!tiles[x][y].isEmpty()){
+       rs++;
+       //}else{}
+     }   
+   }
+  }
+  return rs;
 }
  
  public void mouseMoved(){
