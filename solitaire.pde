@@ -2,9 +2,13 @@ sBoard theBoard;
 int tileSize;
 int boardSize;
 int sSize=600;
+PFont sansBig;
+PFont sansSmall;
 
 void setup(){
 size(600,600,P2D);
+sansBig = createFont( "SourceSansPro-Regular.ttf", 24);
+sansSmall = createFont( "SourceSansPro-Regular.ttf", 12);
 smooth();
 tileSize=60;
 boardSize=tileSize*9;

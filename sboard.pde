@@ -113,18 +113,24 @@ char[][] thePosition = new char[][]{
    
    }
    fill(255);
-   textSize(12);
-   text("Marbles: " + countMarbles() , tileSize/3, tileSize/3);
+   //textSize(12);
+   if(isOn){
+     textFont(sansSmall);
+     text("Marbles: " + countMarbles() , tileSize/3, tileSize/3);
+   }
    //if there is the end
    if (!isOn){
      fill(#000000, 150);
      noStroke();
      rect(0, 0, tileSize*9, tileSize*9);
-     textSize(26);
+     textFont(sansBig);
      fill(255);
      textAlign(CENTER);
      text("No more moves," , tileSize*4.5, tileSize*4.5);
-     text(countMarbles() + " marbles left." , tileSize*4.5, tileSize*5);
+     text(countMarbles() + " marbles left." , tileSize*4.5, tileSize*4.5+24);
+     textFont(sansSmall);
+     text("(click to start over)." , tileSize*4.5, tileSize*4.5+44);
+
 
    }
    //
