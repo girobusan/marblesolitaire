@@ -9,6 +9,8 @@ smooth();
 tileSize=60;
 boardSize=tileSize*9;
 theBoard=new sBoard( (int)(width-boardSize)/2 , (int)(height-boardSize)/2 );
+theBoard.resetPosition();
+/*
 setupBoard(new char[][]{
 { 'R', '_','R', 'R', 'D', '_','_' },
 { '_', 'R','R', 'R', 'D', 'D','_' },
@@ -19,7 +21,7 @@ setupBoard(new char[][]{
 { '_', '_','R', 'D', 'D', '_','_' }
 });
 //println("Marbles: " + theBoard.countMarbles() );
-
+*/
 
 
 }
@@ -43,19 +45,20 @@ theBoard.mousePressed();
 }
 ///service
 
-void setupBoard(char[][] boardMap){
-  
-     for (int y=0; y<7; y++){
-       for (int x=0; x<7; x++){ 
-        if (boardMap[x][y] == 'R'){ //"R" for REGULAR
-            theBoard.tiles[x][y].setPawn(new sPawn()); 
-        }
-              if (boardMap[x][y] == 'D'){ //"D" for DIAGONAL
-            theBoard.tiles[x][y].setPawn(new dPawn()); 
-        }
-       }   
-      }
+
+
+//call from JS
+void setupBoardJS(String[][] bMap){
+ char[][] result = new char[7][7];
+ for (int y=0; y<7; y++){
+   for (int x=0; x<7; x++){ 
+     result[x][y] = bMap[x][y].charAt(0);
     }
+   }
+   theBoard.changePosition(result);
+  }
+
+
 
 int Sgn( int n){  //can not use java.Math
   if (n==0){return 0;}

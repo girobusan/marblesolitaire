@@ -93,6 +93,14 @@ class sTile{
    } 
   }
   
+  public boolean areYouFree(){
+  if (Empty){
+    return false;
+  }else{
+    return pawn.possibleMoves().length>0;
+    }
+  }
+  
   public void Clear(){
   //println("Clearing " + this.posX + ":" +  this.posY);
   Empty=true;

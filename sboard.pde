@@ -4,7 +4,9 @@ class sBoard{
  int x;
  int y;
  float inset=40; 
+ int idleCount = 0;
  PImage background;
+ boolean isOn=true;
  sTile SelectedTile; //coords
  sTile[] ActivatedTile; 
  //sTile SelTile;
@@ -21,6 +23,16 @@ class sBoard{
  { false, false, true, true, true, false, false} 
    
  };
+ 
+char[][] thePosition = new char[][]{
+{ '_', '_','R', 'R', 'D', '_','_' },
+{ '_', 'R','R', 'R', 'D', 'D','_' },
+{ 'R', 'R','R', 'R', 'D', 'D','D' },
+{ 'R', 'R','_', 'R', 'D', 'D','D' },
+{ 'R', 'R','R', 'D', 'D', 'D','D' },
+{ '_', 'R','R', 'D', 'D', 'D','_' },
+{ '_', '_','R', 'D', 'D', '_','_' }
+};
 
  sBoard(int ux, int uy){
    x=ux;
@@ -45,9 +57,45 @@ class sBoard{
     t.posY = y;
     tiles[ix][iy]=t;
   } 
+  
+  public void setPosition(char[][] boardMap){
+  
+     for (int y=0; y<7; y++){
+       for (int x=0; x<7; x++){ 
+            if (boardMap[x][y] == 'R'){ //"R" for REGULAR
+            theBoard.tiles[x][y].setPawn(new sPawn());        
+            }
+            if (boardMap[x][y] == 'D'){ //"D" for DIAGONAL
+            theBoard.tiles[x][y].setPawn(new dPawn()); 
+            }
+            if (boardMap[x][y] == '_'){ //"D" for DIAGONAL
+            theBoard.tiles[x][y].Clear(); 
+            }
+       }   
+      }
+      isOn=true;
+    }
+ 
+ public void resetPosition(){
+    deselectAll();
+    deactivateAll();
+    setPosition(thePosition); 
+ }
+ 
+ public void changePosition(char bm[][]){
+ thePosition = bm;
+ resetPosition();
+ }
 
    
  public void draw(){
+   if(isOn){
+   idleCount++;
+     if (idleCount>20){
+       isThereAmove();
+     idleCount=0;
+     }
+   }
    pushStyle();
    pushMatrix();
    translate(this.x,this.y); 
@@ -67,6 +115,18 @@ class sBoard{
    fill(255);
    textSize(12);
    text("Marbles: " + countMarbles() , tileSize/3, tileSize/3);
+   //if there is the end
+   if (!isOn){
+     fill(#000000, 150);
+     noStroke();
+     rect(0, 0, tileSize*9, tileSize*9);
+     textSize(26);
+     fill(255);
+     textAlign(CENTER);
+     text("No more moves," , tileSize*4.5, tileSize*4.5);
+     text(countMarbles() + " marbles left." , tileSize*4.5, tileSize*5);
+
+   }
    //
    popMatrix();
    popStyle();
@@ -108,15 +168,28 @@ public void deactivateAll(){
   }
 }
 
+public boolean isThereAmove(){//...or die
+    for (int y=0; y<cellSize; y++){
+     for (int x=0; x<cellSize; x++){
+       if(tiles[x][y].areYouFree()){
+       return true;
+     }   
+   }
+  }
+  isOn=false;
+  println("No more moves");
+  return false;
+}
+
 public void Activate(sTile[] tls){
   for (int i=0 ; i<tls.length ; i++){
     tls[i].Activated=true;
   }
  }
  
- public void Select(int x, int y){
+ //public void Select(int x, int y){
  //SelectedTile = new int[]{x,y};
- }
+ //}
  
  public void doMove(sTile dest){
    //print("board do move");
@@ -125,6 +198,8 @@ public void Activate(sTile[] tls){
  }
  
  public void mouseMoved(){
+   if (!isOn){return;}
+   idleCount=0;
    //println("moved");
      for (int y=0; y<cellSize; y++){
        for (int x=0; x<cellSize; x++){      
@@ -134,6 +209,8 @@ public void Activate(sTile[] tls){
  }
  
   public void mousePressed(){
+    if (!isOn){resetPosition();return;}
+    idleCount=0;
    //println("moved");
    deselectAll();
      for (int y=0; y<cellSize; y++){
