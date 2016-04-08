@@ -94,6 +94,7 @@ public void deselectAll(){
 }
 
 public void deactivateAll(){
+    ActivatedTile = new sTile[0];
      for (int y=0; y<cellSize; y++){
      for (int x=0; x<cellSize; x++){
        if(tiles[x][y].isEmpty()){
@@ -114,6 +115,12 @@ public void Activate(sTile[] tls){
  //SelectedTile = new int[]{x,y};
  }
  
+ public void doMove(sTile dest){
+   print("board do move");
+ SelectedTile.pawn.doMove(dest);
+ deactivateAll();
+ }
+ 
  public void mouseMoved(){
    //println("moved");
      for (int y=0; y<cellSize; y++){
@@ -126,12 +133,13 @@ public void Activate(sTile[] tls){
   public void mousePressed(){
    //println("moved");
    deselectAll();
-   deactivateAll();
      for (int y=0; y<cellSize; y++){
        for (int x=0; x<cellSize; x++){      
         tiles[x][y].PressMouse(mouseX-this.x, mouseY-this.y  );       
        }   
      } 
+    //deactivateAll();
+
  }
  
 }

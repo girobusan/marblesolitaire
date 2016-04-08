@@ -80,6 +80,7 @@ class sTile{
   pawn.posX = this.posX;
   pawn.posY = this.posY;
   pawn.board = this.board;
+  pawn.hometile = this;
   Empty=false; 
   Available=false;
   }
@@ -93,6 +94,7 @@ class sTile{
   }
   
   public void Clear(){
+  println("Clearing " + this.posX + ":" +  this.posY);
   Empty=true;
   Available=true;
   }
@@ -122,13 +124,15 @@ class sTile{
   if (isInside(ix, iy)){
     if (!Empty){
        Selected=true;
+       board.deactivateAll();
        board.Activate( pawn.possibleMoves() );
        //int[] r = new int[]{this.x , this.y};
        board.SelectedTile = this;
        //board.SelectedTile = new int[]{this.x , this.y};//; //new int[] {this.x, this.y};
     }
-    if(Activated){
-    //board.doMove(this.x, this.y); //
+    if(Empty && Activated){
+     board.doMove(this); 
+    //board.deactivateAll();//
     }  
    }  
   }//Press 

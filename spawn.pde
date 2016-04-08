@@ -4,15 +4,16 @@ class sPawn{
   int posX;
   int posY;
   sBoard board;//????!??!!
-
+  sTile hometile;
   sPawn(){
   
   }
   
-  sPawn(int x, int y , sBoard brd){
+  sPawn(int x, int y , sBoard brd , sTile hm){
   this.posX = x;
   this.posY = y;
   this.board = brd;
+  this.hometile = hm;
   }
   
   public void draw(){
@@ -85,9 +86,24 @@ class sPawn{
      sTile[] finres = new sTile[counter];
      for (int i=0 ; i<counter ; i++){
      finres[i] = preres[i];
-     }     
+     }  
+  println("Number of possible moves " + finres.length);
   return finres;
-  } 
+  }
+  
+  public void doMove(sTile dest){
+    println("pawn do move: " + this.posX + ":" + this.posY);
+    println("Destination: " + dest.posX + ":" + dest.posY);    
+    //
+    //let me kill
+    int kx = (dest.posX+hometile.posX)/2;    
+    int ky = (dest.posY+hometile.posY)/2;    
+    println("To kill " + kx + ":" + ky);    
+    board.tiles[kx][ky].Clear();
+    //
+    this.hometile.Clear();
+    dest.setPawn(this);  
+  }
 
 
 }

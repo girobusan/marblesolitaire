@@ -9,11 +9,15 @@ smooth();
 tileSize=60;
 boardSize=tileSize*9;
 theBoard=new sBoard( (int)(width-boardSize)/2 , (int)(height-boardSize)/2 );
-theBoard.tiles[5][5].setPawn(new sPawn());
-theBoard.tiles[5][4].setPawn(new sPawn());
-theBoard.tiles[6][4].setPawn(new sPawn());
-theBoard.tiles[5][3].setPawn(new sPawn());
-theBoard.tiles[6][3].setPawn(new sPawn());
+setupBoard(new char[][]{
+{ '_', '_','R', 'R', 'R', '_','_' },
+{ '_', 'R','R', 'R', 'R', 'R','_' },
+{ 'R', 'R','R', '_', 'R', 'R','R' },
+{ 'R', 'R','R', 'R', 'R', 'R','R' },
+{ 'R', 'R','R', 'R', 'R', 'R','R' },
+{ '_', 'R','R', 'R', 'R', 'R','_' },
+{ '_', '_','R', 'R', 'R', '_','_' }
+});
 //println("Marbles: " + theBoard.countMarbles() );
 
 
@@ -38,6 +42,17 @@ void mousePressed(){
 theBoard.mousePressed();
 }
 ///service
+
+void setupBoard(char[][] boardMap){
+  
+     for (int y=0; y<7; y++){
+       for (int x=0; x<7; x++){ 
+        if (boardMap[x][y] == 'R'){ //"R" for REGULAR
+           theBoard.tiles[x][y].setPawn(new sPawn()); 
+        }
+       }   
+     }
+}
 
 int Sgn( int n){  //can not use java.Math
   if (n==0){return 0;}
