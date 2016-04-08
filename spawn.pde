@@ -87,23 +87,102 @@ class sPawn{
      for (int i=0 ; i<counter ; i++){
      finres[i] = preres[i];
      }  
-  println("Number of possible moves " + finres.length);
+  //println("Number of possible moves " + finres.length);
   return finres;
   }
   
   public void doMove(sTile dest){
-    println("pawn do move: " + this.posX + ":" + this.posY);
-    println("Destination: " + dest.posX + ":" + dest.posY);    
-    //
+
     //let me kill
     int kx = (dest.posX+hometile.posX)/2;    
     int ky = (dest.posY+hometile.posY)/2;    
-    println("To kill " + kx + ":" + ky);    
+    //println("To kill " + kx + ":" + ky);    
     board.tiles[kx][ky].Clear();
     //
     this.hometile.Clear();
     dest.setPawn(this);  
   }
 
+}//end class
 
-}
+class dPawn extends sPawn{
+  /*
+  boolean Over=false;
+  int posX;
+  int posY;
+  sBoard board;//????!??!!
+  sTile hometile;
+ */
+  
+  dPawn(){
+  super();
+  }
+  
+  dPawn(int x, int y , sBoard brd , sTile hm){
+   super(x,y,brd,hm);
+  }
+  
+  public void draw(){
+    pushStyle();
+    ellipseMode(CENTER);
+    if (Over){
+    stroke(#FFFFFF);
+    }else{
+    noStroke();
+    }
+    fill(#EA1818);
+    ellipse(tileSize/2, tileSize/2, tileSize/1.8, tileSize/1.8);
+    fill(#FFFFFF);
+    ellipse(tileSize/2.5, tileSize/2.5, tileSize/8, tileSize/8);
+    popStyle();
+  
+  }
+  
+
+  
+  boolean checkMove(int incx, int incy){ //
+  return super.checkMove(incx, incy);
+  }
+  
+  public sTile[] possibleMoves (){
+    sTile[] preres = new sTile[4];
+    int counter=0;
+    //check top right
+    if (checkMove(1,-1))
+    { 
+      preres[counter] = board.tiles[posX+2][posY-2];
+      counter++;     
+    }
+     //check top left
+     if (checkMove(-1,-1))
+     {
+       preres[counter] = board.tiles[posX-2][posY-2];
+       counter++;
+     
+     }
+     //check bottom left
+     if (checkMove(-1,1))
+     {
+       preres[counter] = board.tiles[posX-2][posY+2];
+       counter++;   
+     }
+     //check bottom right
+     if (checkMove(1,1))
+     {
+       preres[counter] = board.tiles[posX+2][posY+2];
+       counter++;
+     }
+     //end checks
+     sTile[] finres = new sTile[counter];
+     for (int i=0 ; i<counter ; i++){
+     finres[i] = preres[i];
+     }  
+  //println("Number of possible moves " + finres.length);
+  return finres;
+  }
+  
+  public void doMove(sTile dest){
+  super.doMove(dest);
+  }
+
+}//end class

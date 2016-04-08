@@ -45,13 +45,13 @@ class sTile{
     }
     ellipse( size/2, size/2 , size/4, size/4);
     textAlign(CENTER);
-    if (!Over){
-      fill(70);
-    }else{
-      fill(#E8F01D);
-    }
-    textSize(10);
-    text(posX+":"+posY, size/2, size-5);
+    //if (!Over){
+    //  fill(70);
+    //}else{
+    //  fill(#E8F01D);
+    //}
+    //textSize(10);
+    //text(posX+":"+posY, size/2, size-5);
     fill(255);
     if (Selected){
      stroke(255);
@@ -94,7 +94,7 @@ class sTile{
   }
   
   public void Clear(){
-  println("Clearing " + this.posX + ":" +  this.posY);
+  //println("Clearing " + this.posX + ":" +  this.posY);
   Empty=true;
   Available=true;
   }

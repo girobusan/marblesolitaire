@@ -51,10 +51,13 @@ class sBoard{
    pushStyle();
    pushMatrix();
    translate(this.x,this.y); 
-   //
-   noFill();
+   fill(70);
    stroke(80);
-   rect(0,0,9*tileSize,9*tileSize);
+   rect(0,0,9*tileSize,9*tileSize); 
+   //
+   //noFill();
+   
+   //rect(0,0,9*tileSize,9*tileSize);
    for (int y=0; y<cellSize; y++){
      for (int x=0; x<cellSize; x++){
        tiles[x][y].draw();
@@ -116,7 +119,7 @@ public void Activate(sTile[] tls){
  }
  
  public void doMove(sTile dest){
-   print("board do move");
+   //print("board do move");
  SelectedTile.pawn.doMove(dest);
  deactivateAll();
  }
