@@ -68,7 +68,7 @@ char[][] thePosition = new char[][]{
             if (boardMap[x][y] == 'D'){ //"D" for DIAGONAL
             theBoard.tiles[x][y].setPawn(new dPawn()); 
             }
-            if (boardMap[x][y] == '_'){ //"D" for DIAGONAL
+            if (boardMap[x][y] == '_'){ //"_" for EMPTY
             theBoard.tiles[x][y].Clear(); 
             }
        }   
