@@ -124,7 +124,7 @@ String[][] thePosition = new String[][]{
    }
    //if there is the end
    if (!isOn){
-     fill(#000000, 150);
+     fill(#333333, 150);
      noStroke();
      rect(0, 0, tileSize*9, tileSize*9);
      textFont(sansBig);
