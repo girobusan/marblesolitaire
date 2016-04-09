@@ -6,7 +6,7 @@ PFont sansBig;
 PFont sansSmall;
 
 void setup(){
-size(600,600);
+size(540,540);
 sansBig = createFont( "SourceSansPro-Regular.ttf", 24);
 sansSmall = createFont( "SourceSansPro-Regular.ttf", 12);
 
@@ -53,13 +53,8 @@ theBoard.mousePressed();
 
 //call from JS
 void setupBoardJS(String[][] bMap){
- char[][] result = new char[7][7];
- for (int y=0; y<7; y++){
-   for (int x=0; x<7; x++){ 
-     result[x][y] = bMap[x][y].charAt(0);
-    }
-   }
-   theBoard.changePosition(result);
+  theBoard.changePosition(bMap);
+ 
   }
 
 

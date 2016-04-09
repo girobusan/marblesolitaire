@@ -105,6 +105,7 @@ class sTile{
   //println("Clearing " + this.posX + ":" +  this.posY);
   Empty=true;
   Available=true;
+  Activated=false;
   }
   
   public boolean isEmpty(){

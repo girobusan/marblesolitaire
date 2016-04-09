@@ -24,14 +24,14 @@ class sBoard{
    
  };
  
-char[][] thePosition = new char[][]{
-{ '_', '_','R', 'R', 'D', '_','_' },
-{ '_', 'R','R', 'R', 'D', 'D','_' },
-{ 'R', 'R','R', 'R', 'D', 'D','D' },
-{ 'R', 'R','_', 'R', 'D', 'D','D' },
-{ 'R', 'R','R', 'D', 'D', 'D','D' },
-{ '_', 'R','R', 'D', 'D', 'D','_' },
-{ '_', '_','R', 'D', 'D', '_','_' }
+String[][] thePosition = new String[][]{
+{ "_", "_","R", "R", "D", "_","_" },
+{ "_", "R","R", "R", "D", "D","_" },
+{ "R", "R","R", "R", "D", "D","D" },
+{ "R", "R","_", "R", "D", "D","D" },
+{ "R", "R","R", "D", "D", "D","D" },
+{ "_", "R","R", "D", "D", "D","_" },
+{ "_", "_","R", "D", "D", "_","_" }
 };
 
  sBoard(int ux, int uy){
@@ -58,19 +58,23 @@ char[][] thePosition = new char[][]{
     tiles[ix][iy]=t;
   } 
   
-  public void setPosition(char[][] boardMap){
+  public void setPosition(String[][] boardMap){
   
      for (int y=0; y<7; y++){
        for (int x=0; x<7; x++){ 
-            if (boardMap[x][y] == 'R'){ //"R" for REGULAR
-            theBoard.tiles[x][y].setPawn(new sPawn());        
+            //println("Set " + boardMap[x][y] );
+            if (boardMap[x][y] == "R"){ //"R" for REGULAR
+            //println("regular");
+            theBoard.tiles[x][y].setPawn(new sPawn()); 
+            continue;
             }
-            if (boardMap[x][y] == 'D'){ //"D" for DIAGONAL
+            if (boardMap[x][y] == "D"){ //"D" for DIAGONAL
             theBoard.tiles[x][y].setPawn(new dPawn()); 
+            continue;
             }
-            if (boardMap[x][y] == '_'){ //"_" for EMPTY
+            //if (boardMap[x][y] == '_'){ //"_" for EMPTY
             theBoard.tiles[x][y].Clear(); 
-            }
+            //}
        }   
       }
       isOn=true;
@@ -82,7 +86,7 @@ char[][] thePosition = new char[][]{
     setPosition(thePosition); 
  }
  
- public void changePosition(char bm[][]){
+ public void changePosition(String bm[][]){
  thePosition = bm;
  resetPosition();
  }
@@ -91,7 +95,7 @@ char[][] thePosition = new char[][]{
  public void draw(){
    if(isOn){
    idleCount++;
-     if (idleCount>20){
+     if (idleCount>5){
        isThereAmove();
      idleCount=0;
      }
@@ -183,7 +187,7 @@ public boolean isThereAmove(){//...or die
    }
   }
   isOn=false;
-  println("No more moves");
+  //println("No more moves");
   return false;
 }
 

@@ -2,16 +2,52 @@
 <html>
 <head>
  <title>Solitaire test</title>
+ <style>
+ @@font-face {
+   font-family: SourceS;
+   src=url("SourceSansPro-Regular.ttf");
+ }
+ body{
+font-family: SourceS;
+padding: 2em;
+background-color: #333;
+color: #ccc;
+ }
+ #solitaire{
+display: block;
+float: left;
+margin-right: 2em;
+ }
+ a, a.link, a.visited {
+color: #DEBC72;
+ }
+ a.hover{
+color: #fff;
+
+ }
+ #optlist{
+line-height: 2em;
+
+ }
+ </style>
 
  <script src="processing.min.js"></script>
   <script src="solitaire.js"></script>
 </head>
-<body onLoad="sinit();">
+<body onLoad="">
  <h1>Twisted solitaire</h1>
 
 <canvas id="solitaire" data-processing-sources="solitaire.pde sboard.pde spawn.pde stile.pde" style="" >
 </canvas>
-<form>
-</form>
+<ul id="optlist">
+<li><a href="#" onClick="SetBoard(Classic)" >Classic</a></li>
+<li><a href="#" onClick="SetBoard(AllDiagonal)" >All diagonal</a></li>
+<li><a href="#" onClick="SetBoard(CheckerLike)" >Checker like</a></li>
+<li><a href="#" onClick="SetBoard(CheckerLike2)" >Inverted checker like</a></li>
+
+<li><a href="#" onClick="SetBoard(Default)" >Default</a></li>
+<li><a href="#" onClick="SetBoard(doShuffle())" >Random</a></li>
+
+</ul>
  </body>
  </html>
