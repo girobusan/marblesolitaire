@@ -6,10 +6,10 @@ PFont sansBig;
 PFont sansSmall;
 
 void setup(){
-size(600,600,P2D);
+size(600,600);
 sansBig = createFont( "SourceSansPro-Regular.ttf", 24);
 sansSmall = createFont( "SourceSansPro-Regular.ttf", 12);
-smooth();
+
 tileSize=60;
 boardSize=tileSize*9;
 theBoard=new sBoard( (int)(width-boardSize)/2 , (int)(height-boardSize)/2 );
