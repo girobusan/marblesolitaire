@@ -1,7 +1,7 @@
  <!DOCTYPE html>
 <html>
 <head>
- <title>Solitaire test</title>
+ <title>GMO Solitaire</title>
  <style>
  @@font-face {
    font-family: SourceS;
@@ -10,13 +10,32 @@
  body{
 font-family: SourceS;
 padding: 2em;
-background-color: #333;
+background-color: #444; //#333;
 color: #ccc;
+ }
+ h1, h2{
+font-family: SourceS;
+font-weight:normal;
+
  }
  #solitaire{
 display: block;
+margin:0px;
+/*
 float: left;
-margin-right: 2em;
+margin-right: 2em;*/
+ }
+ #solitaire:focus{
+outline:none;
+
+ }
+ #options{
+display: block;
+float: left;
+padding-right: 1em;
+
+
+
  }
  a, a.link, a.visited {
 color: #DEBC72;
@@ -35,24 +54,35 @@ line-height: 2em;
   <script src="solitaire.js"></script>
 </head>
 <body onLoad="">
- <h1>Twisted solitaire</h1>
+
+ <div id="options">
+    <h1>GMO solitaire</h1>
+
+  Click marble to select, <br />
+  click highlighted target tile to move.<br/>
+  Blue marbles jump orthogonally,<br />
+  the red ones &mdash; diagonally.
+   <h2>Setups:</h2>
+   <ul id="optlist">
+   <li><a href="#" onClick="SetBoard(Classic)" >Classic</a></li>
+   <li><a href="#" onClick="SetBoard(AllDiagonal)" >All diagonal</a></li>
+   <li><a href="#" onClick="SetBoard(CheckerLike)" >Checker like</a></li>
+   <li><a href="#" onClick="SetBoard(CenteredCheckerLike)" >Centered checker like</a></li>
+   <li><a href="#" onClick="SetBoard(CheckerLike2)" >Inverted checker like</a></li>
+   <li><a href="#" onClick="SetBoard(CenteredCheckerLike2)" >Centered inverted checker like</a></li>
+   <li><a href="#" onClick="SetBoard(Default)" >Default</a></li>
+   <li><a href="#" onClick="SetBoard(DefaultCentered)" >Default centered</a></li>
+   <li><a href="#" onClick="SetBoard(doShuffle())" >Random</a></li>
+   </ul>
+ </div>
 
 <canvas id="solitaire" data-processing-sources="solitaire.pde sboard.pde spawn.pde stile.pde" style="" >
 </canvas>
-<ul id="optlist">
-<li><a href="#" onClick="SetBoard(Classic)" >Classic</a></li>
-<li><a href="#" onClick="SetBoard(AllDiagonal)" >All diagonal</a></li>
-<li><a href="#" onClick="SetBoard(CheckerLike)" >Checker like</a></li>
-<li><a href="#" onClick="SetBoard(CenteredCheckerLike)" >Centered checker like</a></li>
+<br style="clear:all;" />
+<small><strong>Brought to you by <a href="http://glebsite.net"> Gleb's site</a>.</strong> <br /> Written in <a href="http://processing.org"> Processing</a>. Displayed via <a href="http://processingjs.com">Processingjs</a>.<br />
+  Distributed under terms of <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" >Creative Commons Attribution
+    Non-Commercial Share Alike</a> license.</small>
 
-<li><a href="#" onClick="SetBoard(CheckerLike2)" >Inverted checker like</a></li>
-<li><a href="#" onClick="SetBoard(CenteredCheckerLike2)" >Centered inverted checker like</a></li>
 
-<li><a href="#" onClick="SetBoard(Default)" >Default</a></li>
-<li><a href="#" onClick="SetBoard(DefaultCentered)" >Default centered</a></li>
-
-<li><a href="#" onClick="SetBoard(doShuffle())" >Random</a></li>
-
-</ul>
  </body>
  </html>

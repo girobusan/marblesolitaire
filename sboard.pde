@@ -103,8 +103,8 @@ String[][] thePosition = new String[][]{
    pushStyle();
    pushMatrix();
    translate(this.x,this.y); 
-   fill(70);
-   stroke(80);
+   fill(#444444);
+   noStroke(); // stroke(80);
    rect(0,0,9*tileSize,9*tileSize); 
    //
    //noFill();
@@ -120,20 +120,21 @@ String[][] thePosition = new String[][]{
    //textSize(12);
    if(isOn){
      textFont(sansSmall);
+     fill(#666666);
      text("Marbles: " + countMarbles() , tileSize/3, tileSize/3);
    }
    //if there is the end
    if (!isOn){
      fill(#333333, 150);
      noStroke();
-     rect(0, 0, tileSize*9, tileSize*9);
+     rect(tileSize*2, tileSize*3, tileSize*5, tileSize*2.5);
      textFont(sansBig);
      fill(255);
      textAlign(CENTER);
-     text("No more moves," , tileSize*4.5, tileSize*4.5);
-     text(countMarbles() + " marbles left." , tileSize*4.5, tileSize*4.5+24);
+     text("No more moves," , tileSize*4.5, tileSize*4);
+     text(countMarbles() + " marbles left." , tileSize*4.5, tileSize*4+30);
      textFont(sansSmall);
-     text("(click to start over)." , tileSize*4.5, tileSize*4.5+44);
+     text("(click to start over)." , tileSize*4.5, tileSize*4+50);
 
 
    }
