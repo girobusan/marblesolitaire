@@ -1,3 +1,4 @@
+/* @pjs pauseOnBlur="true"; */
 sBoard theBoard;
 int tileSize;
 int boardSize;
